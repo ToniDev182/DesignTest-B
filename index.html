@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css.css">
+    <title>GameInk</title>
+    <link rel="icon" href="assets/ico/bart.png" type="image/png">
+
+</head>
+
+<body>
+    <section class="seccion1">
+        <span>
+            <button class="boton1">Jugos</button>
+        </span>
+        <span>
+            <button class="boton2">Inicio</button>
+        </span>
+        <span>
+            <button class="boton3">Consolas</button>
+        </span>
+        <span class="logo">
+            <img src="assets/logo/logo.jpg" alt="">
+        </span>
+    </section>
+    <main>
+        <section class="seccion2">
+            <span class="h5p">
+                <iframe src="https://h5p.org/h5p/embed/6729" width="1000" height="400" frameborder="0"
+                    allowfullscreen="allowfullscreen"
+                    allow="geolocation *; microphone *; camera *; midi *; encrypted-media *" title="Chart"></iframe>
+
+            </span>
+            <span class="canvas">
+
+                <canvas id="miCanvas" width="600" height="450"></canvas>
+                <script>
+                    const canvas = document.getElementById('miCanvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Propiedades de la Tierra
+                    let tierra = {
+                        x: 50, // Posición x inicial de la Tierra
+                        y: 50, // Posición y inicial de la Tierra
+                        radio: 50, // Radio de la Tierra
+                        dx: 3, // Velocidad en x
+                        dy: 2 // Velocidad en y
+                    };
+
+                    // Cargar imagen de la textura de la Tierra (sin fondo)
+                    const imagenTierra = new Image();
+                    imagenTierra.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg'; // Imagen de la Tierra sin fondo
+
+                    // Función para dibujar la Tierra
+                    function drawTierra() {
+                        // Dibujar la Tierra usando la textura cargada
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.arc(tierra.x, tierra.y, tierra.radio, 0, Math.PI * 2); // Dibuja el contorno de la Tierra
+                        ctx.clip(); // Recorta la imagen dentro del círculo
+                        ctx.drawImage(imagenTierra, tierra.x - tierra.radio, tierra.y - tierra.radio, tierra.radio * 2, tierra.radio * 2); // Dibujar la imagen
+                        ctx.restore(); // Restablece el contexto
+                    }
+
+                    // Función para dibujar los bordes del canvas
+                    function drawBorders() {
+                        ctx.strokeStyle = 'black'; // Color del borde
+                        ctx.lineWidth = 4; // Ancho del borde
+                        ctx.strokeRect(0, 0, canvas.width, canvas.height); // Dibuja el borde del canvas
+                    }
+
+                    // Función para actualizar la posición de la Tierra
+                    function update() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas
+                        drawBorders(); // Dibuja los bordes
+                        drawTierra(); // Dibuja la Tierra
+
+                        // Actualiza la posición de la Tierra
+                        tierra.x += tierra.dx;
+                        tierra.y += tierra.dy;
+
+                        // Rebotar en las paredes
+                        if (tierra.x + tierra.radio > canvas.width || tierra.x - tierra.radio < 0) {
+                            tierra.dx = -tierra.dx; // Invierte la dirección en x
+                        }
+                        if (tierra.y + tierra.radio > canvas.height || tierra.y - tierra.radio < 0) {
+                            tierra.dy = -tierra.dy; // Invierte la dirección en y
+                        }
+                    }
+
+                    // Animación
+                    function animate() {
+                        update(); // Actualiza la posición
+                        requestAnimationFrame(animate); // Llama a la función de animación
+                    }
+
+                    // Inicia la animación una vez que la imagen esté cargada
+                    imagenTierra.onload = function () {
+                        animate();
+                    };
+                </script>
+
+            </span>
+
+        </section>
+        <section class="seccion3">
+
+            <span class="animacion">
+
+                <div class="box"></div>
+            </span>
+
+            <span class="formulario">
+
+
+                <form class="form">
+                    <label for="username">Nombre de usuario:</label>
+                    <input type="text" id="username" name="username" placeholder="Elige un nombre de usuario" required>
+                    <br><br>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                    <br><br>
+
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    <br><br>
+
+                    <label for="confirm-password">Confirma la contraseña:</label>
+                    <input type="password" id="confirm-password" name="confirm-password"
+                        placeholder="Confirma tu contraseña" required>
+                    <br><br>
+
+                    <input type="submit" value="Registrarse">
+                </form>
+            </span>
+
+        </section>
+
+        <section class="seccion4">
+
+            <span class="contenedor1">
+                <h3>Final Fantasy VII Remake:</h3>
+                <img src="assets/image/ff7.jpg" alt="FF7 Remake" width="300" height="200">
+                <p>Un remake del clásico RPG que redefine la historia y jugabilidad, ofreciendo gráficos impresionantes
+                    y un sistema de combate dinámico.</p>
+            </span>
+
+            <span class="contenedor2">
+                <h3>Metal Gear Solid V:</h3>
+                <img src="assets/image/mgs5.jpg" alt="Metal Gear Solid V" width="300" height="200">
+                <p>Un juego de acción y sigilo que permite a los jugadores experimentar la guerra moderna con un mundo
+                    abierto y múltiples enfoques estratégicos.</p>
+            </span>
+
+            <span class="contenedor3">
+                <h3>Resident Evil 3 Remake:</h3>
+                <img src="assets/image/RE3.jpg" alt="Resident Evil 3 Remake" width="300" height="200">
+                <p>Un remake del juego de terror clásico que combina acción intensa con elementos de supervivencia en un
+                    ambiente post-apocalíptico.</p>
+            </span>
+
+            <span class="contenedor4">
+                <h3>Shadow of the Colossus Remaster:</h3>
+                <img src="assets/image/soc.jpg" alt="Shadow of the Colossus Remaster" width="300" height="200">
+                <p>Un juego de aventura épica donde los jugadores deben derrotar a gigantescos colosos en un mundo
+                    abierto, explorando la belleza y la soledad.</p>
+            </span>
+
+
+        </section>
+
+    </main>
+
+    <footer>
+        <span class="contenedor1">
+            <h4>Patrocinador Principal:</h4>
+            <p>Compañía de Juegos XYZ</p>
+            <h5>Patrocinador Oro:</h5>
+            <p>Premium Games Co.</p>
+            <h6>Aliado Estratégico:</h6>
+            <p>Global Gaming Network</p>
+        </span>
+
+        <span class="contenedor2">
+            <h4>Patrocinador Secundario:</h4>
+            <p>Tech Innovators</p>
+            <h5>Colaborador de Desarrollo:</h5>
+            <p>NextGen Studios</p>
+            <h6>Patrocinador de Evento:</h6>
+            <p>Interactive Fun Inc.</p>
+        </span>
+
+        <span class="contenedor3">
+            <h4>Colaborador:</h4>
+            <p>Game Studio ABC</p>
+            <h5>Socio de Creación:</h5>
+            <p>Creative Minds</p>
+            <h6>Patrocinador Local:</h6>
+            <p>Local Game Hub</p>
+        </span>
+    </footer>
+
+
+</body>
+
+</html>
