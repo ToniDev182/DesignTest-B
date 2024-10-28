@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <section class="seccion1">
+    <header class="seccion1">
         <span>
             <button class="boton1">Jugos</button>
         </span>
@@ -24,7 +24,7 @@
         <span class="logo">
             <img src="assets/logo/logo.jpg" alt="">
         </span>
-    </section>
+    </header>
     <main>
         <section class="seccion2">
             <span class="h5p">
@@ -34,106 +34,74 @@
 
             </span>
             <span class="canvas">
-
                 <canvas id="miCanvas" width="600" height="450"></canvas>
-                <script>
-                    const canvas = document.getElementById('miCanvas');
-                    const ctx = canvas.getContext('2d');
-
-                    // Propiedades de la Tierra
-                    let tierra = {
-                        x: 50, // Posición x inicial de la Tierra
-                        y: 50, // Posición y inicial de la Tierra
-                        radio: 50, // Radio de la Tierra
-                        dx: 3, // Velocidad en x
-                        dy: 2 // Velocidad en y
-                    };
-
-                    // Cargar imagen de la textura de la Tierra (sin fondo)
-                    const imagenTierra = new Image();
-                    imagenTierra.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg'; // Imagen de la Tierra sin fondo
-
-                    // Función para dibujar la Tierra
-                    function drawTierra() {
-                        // Dibujar la Tierra usando la textura cargada
-                        ctx.save();
-                        ctx.beginPath();
-                        ctx.arc(tierra.x, tierra.y, tierra.radio, 0, Math.PI * 2); // Dibuja el contorno de la Tierra
-                        ctx.clip(); // Recorta la imagen dentro del círculo
-                        ctx.drawImage(imagenTierra, tierra.x - tierra.radio, tierra.y - tierra.radio, tierra.radio * 2, tierra.radio * 2); // Dibujar la imagen
-                        ctx.restore(); // Restablece el contexto
-                    }
-
-                    // Función para dibujar los bordes del canvas
-                    function drawBorders() {
-                        ctx.strokeStyle = 'black'; // Color del borde
-                        ctx.lineWidth = 4; // Ancho del borde
-                        ctx.strokeRect(0, 0, canvas.width, canvas.height); // Dibuja el borde del canvas
-                    }
-
-                    // Función para actualizar la posición de la Tierra
-                    function update() {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas
-                        drawBorders(); // Dibuja los bordes
-                        drawTierra(); // Dibuja la Tierra
-
-                        // Actualiza la posición de la Tierra
-                        tierra.x += tierra.dx;
-                        tierra.y += tierra.dy;
-
-                        // Rebotar en las paredes
-                        if (tierra.x + tierra.radio > canvas.width || tierra.x - tierra.radio < 0) {
-                            tierra.dx = -tierra.dx; // Invierte la dirección en x
-                        }
-                        if (tierra.y + tierra.radio > canvas.height || tierra.y - tierra.radio < 0) {
-                            tierra.dy = -tierra.dy; // Invierte la dirección en y
-                        }
-                    }
-
-                    // Animación
-                    function animate() {
-                        update(); // Actualiza la posición
-                        requestAnimationFrame(animate); // Llama a la función de animación
-                    }
-
-                    // Inicia la animación una vez que la imagen esté cargada
-                    imagenTierra.onload = function () {
-                        animate();
-                    };
-                </script>
-
             </span>
-
         </section>
         <section class="seccion3">
 
-            <span class="animacion">
-
+            <span class="container">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box1"></div>
+                <div class="box"></div>
                 <div class="box"></div>
             </span>
 
             <span class="formulario">
 
+                <form>
 
-                <form class="form">
-                    <label for="username">Nombre de usuario:</label>
-                    <input type="text" id="username" name="username" placeholder="Elige un nombre de usuario" required>
+                    <h1>Sign Up</h1> <!-- Corrección en el título -->
+
+                    <!-- Nombre -->
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
                     <br><br>
 
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                    <!-- Apellidos -->
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
                     <br><br>
 
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    <!-- Correo -->
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="Correo" required>
                     <br><br>
 
-                    <label for="confirm-password">Confirma la contraseña:</label>
-                    <input type="password" id="confirm-password" name="confirm-password"
-                        placeholder="Confirma tu contraseña" required>
+                    <!-- Contraseña -->
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Password" required>
                     <br><br>
 
-                    <input type="submit" value="Registrarse">
+                    <!-- Confirmar Contraseña -->
+                    <label for="confirmar_contraseña">Confirmar Contraseña:</label>
+                    <input type="password" id="confirmar_contraseña" name="confirmar_contraseña"
+                        placeholder="Confirmar Password" required>
+                    <br><br>
+
+                    <!-- Fecha de Nacimiento -->
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    <!-- Tipo "date" para seleccionar una fecha -->
+                    <br><br>
+
+                    <!-- Género -->
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+                    <br><br>
+
+                    <!-- Aceptar Términos -->
+                    <label for="aceptarTer">Aceptar términos y condiciones:</label>
+                    <input type="checkbox" id="aceptarTer" name="aceptarTer" required>
+                    <br><br>
+
+                    <!-- Botón de Enviar -->
+                    <button type="submit" name="enviar">Enviar</button>
+                    <br><br>
+
                 </form>
             </span>
 
@@ -202,7 +170,7 @@
             <p>Local Game Hub</p>
         </span>
     </footer>
-
+    <script src="js/js.js"></script>
 
 </body>
 
